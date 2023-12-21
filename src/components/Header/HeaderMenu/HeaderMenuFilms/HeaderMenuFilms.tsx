@@ -38,33 +38,32 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
             years:[]
         }
     );
-    
-    async function fetchFiltres() {
 
+    async function fetchFiltres() {
         const response = await axios.get('http://localhost:5000/filters')
 
-        const filtres_ = {
+        const filters_ = {
             genresFirst: response.data.genres.slice (0 , response.data.genres.length / 2 ),
             genresSecond: response.data.genres.slice ( (response.data.genres.length / 2), response.data.genres.length ),
-            years: response.data.years.reverse().slice( 2 , 6 )
+            years: response.data.years.reverse().slice( 1 , 6 )
         };
 
-        setAllFiltres(filtres_); 
+        setAllFiltres(filters_);
     };
 
     useEffect( () => {
-        fetchFiltres();   
+        fetchFiltres();
     }, [])
-    
+
     return(
-        <div className="headerMenuFilms" id={id}>
+        <div className="headerMenuFilms" id={id} data-testid='headerMoviesBlock'>
 
             <div className="headerMenuFilms__column">
 
                 <h3 className="headerMenuFilms__heading">{t('header.menuFilms.genres')}</h3>
-                
+
                 <ul className="headerMenuFilms__list">
-        
+
                     <div className="headerMenuFilms__column">
                         <CreateList items={allFiltres.genresFirst} renderItem={filter =>
                             <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameRu}`)}>
@@ -78,52 +77,52 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
                             <p key={filter.nameEn } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/genre/${filter.nameRu}`)}>
                                 {i18n.language === 'en' ? [filter.nameEn || filter.nameRu] : [filter.nameRu]}
                             </p>
-                        }/> 
+                        }/>
                     </div>
 
-                </ul>    
+                </ul>
             </div>
 
             <div className="headerMenuFilms__column">
-                    
-                    <h3 className="headerMenuFilms__heading">{t('header.menuFilms.countres')}</h3>
-                    <ul className="headerMenuFilms__list">
-                        <div className="headerMenuFilms__column">
 
-                            <a 
-                                className="headerMenuFilms__link"
-                                onClick={() => navigate (`/movies-website/films/country/Россия`)}
-                            >
-                                <p className="headerMenuFilms__item">{t('header.menuFilms.russian')}</p>
-                            </a>
+                <h3 className="headerMenuFilms__heading">{t('header.menuFilms.countres')}</h3>
+                <ul className="headerMenuFilms__list">
+                    <div className="headerMenuFilms__column">
 
-                            <a 
-                                className="headerMenuFilms__link" 
-                                onClick={() => navigate (`/movies-website/films/country/СССР`)}
-                            >
-                                <p className="headerMenuFilms__item">{t('header.menuFilms.ussr')}</p>
-                            </a>
+                        <a
+                            className="headerMenuFilms__link"
+                            onClick={() => navigate (`/movies-website/films/country/Россия`)}
+                        >
+                            <p className="headerMenuFilms__item">{t('header.menuFilms.russian')}</p>
+                        </a>
 
-                            <a 
-                                className="headerMenuFilms__link"
-                                onClick={() => navigate (`/movies-website/films/country/США`)}
-                            >
-                                <p className="headerMenuFilms__item">{t('header.menuFilms.abroad')}</p>
-                            </a>
-                        </div>
+                        <a
+                            className="headerMenuFilms__link"
+                            onClick={() => navigate (`/movies-website/films/country/СССР`)}
+                        >
+                            <p className="headerMenuFilms__item">{t('header.menuFilms.ussr')}</p>
+                        </a>
 
-                    </ul>
+                        <a
+                            className="headerMenuFilms__link"
+                            onClick={() => navigate (`/movies-website/films/country/США`)}
+                        >
+                            <p className="headerMenuFilms__item">{t('header.menuFilms.abroad')}</p>
+                        </a>
+                    </div>
 
-                    <h3 className="headerMenuFilms__heading">{t('header.menuFilms.years')}</h3>
-                    <ul className="headerMenuFilms__list">
-                        <div className="headerMenuFilms__column">
-                            <CreateList items={allFiltres.years} renderItem={filter =>
-                                <p key={filter } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/year/${filter}`)}>
-                                    {t(`header.menuFilms.${filter}`)}
-                                </p>
-                            } />
-                        </div>
-                    </ul>
+                </ul>
+
+                <h3 className="headerMenuFilms__heading">{t('header.menuFilms.years')}</h3>
+                <ul className="headerMenuFilms__list">
+                    <div className="headerMenuFilms__column">
+                        <CreateList items={allFiltres.years} renderItem={filter =>
+                            <p key={filter } className="headerMenuFilms__item" onClick={() => navigate(`/movies-website/films/year/${filter}`)}>
+                                {t(`header.menuFilms.${filter}`)}
+                            </p>
+                        } />
+                    </div>
+                </ul>
 
             </div>
 
@@ -135,6 +134,6 @@ const HeaderMenuFilms:FC<HeaderMenuProps> = ({id}) => {
 
         </div>
     );
- };
+};
 
- export default HeaderMenuFilms;
+export default HeaderMenuFilms;

@@ -14,11 +14,31 @@
         padding: 5px 20px 10px 10px;
         border-radius: 10px;
         cursor: pointer;
+        &_active{
+            padding: 5px 20px 10px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #ff1a57;
+        }
+        &:hover{
+            color: #ff1a57;
+            transition-duration: 0.4s;
+        }
 
     }
     &__block-genre{
         padding: 5px 20px 10px 10px;
         border-radius: 10px;
         cursor: pointer;
+        &_active{
+            padding: 5px 20px 10px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #ff1a57;
+        }
+        &:hover{
+            color: #ff1a57;
+            transition-duration: 0.4s;
+        }
     }
 }

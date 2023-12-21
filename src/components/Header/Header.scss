@@ -7,33 +7,35 @@
         max-width: 1300px;
         margin: 0 auto;
         padding: 0 30px;
-        position: relative; 
+        position: relative;
     }
     &__container {
         padding: 0 12px;
         margin-top: 10px;
         &_active {
-            background: $backgroundElements;
+            // background: $backgroundElements;
             box-shadow: 0 20px 96px #12101b;
-            border-radius: 12px 12px 0 0;  
+            border-radius: 12px 12px 0 0;
         }
     }
     &__dropDownBody {
         margin: 0 auto;
 
-        z-index: 3;
         display: block;
 
         background: $backgroundElements;
         box-shadow: 0 20px 96px #12101b;
         border-top: none;
         border-radius: 0 0 12px 12px;
-        
+
         position: absolute;
+
+        transition-property: opacity;
+        transition-duration: 1000ms;
+        opacity: 1;
         &_hidden {
             display: none;
             z-index: -2;
-            //должно выполнятся в анимации, переделать
         }
 
     }
@@ -47,8 +49,8 @@
 
 //Animation dropDownMenu
 .header {
-    
-    &__dropDownBody {
+
+    &__dropDownBody:hover {
         animation-name: open;
         animation-duration: 0.4s;
         animation-iteration-count: 1;
@@ -56,11 +58,11 @@
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
         animation-delay: 0s;
-        
+    }
     &__container{
         &_active {
-            animation-name: open;
-            animation-duration: 0.6s;
+            animation-name: topOpen;
+            animation-duration: 0.4s;
             animation-iteration-count: 1;
             animation-direction: normal;
             animation-timing-function: ease-out;
@@ -68,16 +70,7 @@
             animation-delay: 0s;
         }
     }
-        &_hidden {
-            animation-name: close;
-            animation-duration: 0.6s;
-            animation-iteration-count: 1;
-            animation-direction: normal;
-            animation-timing-function: ease-out;
-            animation-fill-mode: forwards;
-            animation-delay: 0s;
-        }
-    }
+
 }
 
 .headerMenuFilms,
@@ -95,24 +88,21 @@
 
 @keyframes open {
     0% {
-      opacity: 0;
+        opacity: 0;
     }
     100% {
-      opacity: 1;
+        opacity: 1;
     }
 };
 
-@keyframes close {
+@keyframes topOpen {
     0% {
-        display: block;
-        opacity: 1;
+        background: transparent;
     }
     100% {
-        opacity: 0;
-        display: none;
-        z-index: -2;
+        background: $backgroundElements;
     }
-}
+};
 
 //Mobile version
 @media (max-width: 600px) {

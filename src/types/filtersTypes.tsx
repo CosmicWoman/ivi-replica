@@ -1,11 +1,9 @@
-import {number} from "prop-types";
-
 export interface activeFiltersProps {
     'genres': string[],
     'popularGenres': string[],
     'popularCountries': string[],
     'countries': string[],
-    'years': number | string,
+    'years': number | null | string,
     'rating': number,
     'grade': number,
     'producer': string,
@@ -51,7 +49,7 @@ export interface MovieProps {
 }
 
 export interface MovieSearchProps {
-    'key': number,
+    'key': number | string,
     'nameRu': string,
     'nameEn': string,
 }
@@ -85,6 +83,12 @@ export interface startFiltersProps {
 }
 
 export interface Item {
+    nameRu: string,
+    nameEn: string
+}
+
+export interface genreAdmin {
+    id: number,
     nameRu: string,
     nameEn: string
 }
@@ -201,6 +205,182 @@ export const activeFilters = {
     'years': '',
     'rating': 0,
     'grade': 0,
+    'producer': '',
+    'actor': ''
+}
+
+export const arrAllFiltersTest = {
+    'popularGenres': [
+        {
+            'nameRu': 'драма',
+            'nameEn': 'drama'
+        },
+        {
+            'nameRu': 'боевик',
+            'nameEn': 'action'
+        },
+        {
+            'nameRu': 'триллер',
+            'nameEn': 'thriller'
+        },
+        {
+            'nameRu': 'криминал',
+            'nameEn': 'crime'
+        },
+        {
+            'nameRu': 'комедия',
+            'nameEn': 'comedy'
+        },
+        {
+            'nameRu': 'фантастика',
+            'nameEn': 'fantastic'
+        },
+        {
+            'nameRu': 'приключения',
+            'nameEn': 'adventures'
+        },
+        {
+            'nameRu': 'семейный',
+            'nameEn': 'family'
+        },
+        {
+            'nameRu': 'аниме',
+            'nameEn': 'anime'
+        },
+        {
+            'nameRu': 'фэнтези',
+            'nameEn': 'fantasy'
+        }
+    ],
+    'genres': [
+        {
+            'nameRu': 'драма',
+            'nameEn': 'drama'
+        },
+        {
+            'nameRu': 'боевик',
+            'nameEn': 'action'
+        },
+        {
+            'nameRu': 'триллер',
+            'nameEn': 'thriller'
+        },
+        {
+            'nameRu': 'криминал',
+            'nameEn': 'crime'
+        },
+        {
+            'nameRu': 'комедия',
+            'nameEn': 'comedy'
+        },
+        {
+            'nameRu': 'фантастика',
+            'nameEn': 'fantastic'
+        },
+        {
+            'nameRu': 'приключения',
+            'nameEn': 'adventures'
+        },
+        {
+            'nameRu': 'семейный',
+            'nameEn': 'family'
+        },
+        {
+            'nameRu': 'аниме',
+            'nameEn': 'anime'
+        },
+        {
+            'nameRu': 'фэнтези',
+            'nameEn': 'fantasy'
+        }
+    ],
+    'popularCountries': [
+        {
+            'nameRu': 'Россия',
+            'nameEn': 'Russia'
+        },
+        {
+            'nameRu': 'США',
+            'nameEn': 'USA'
+        },
+        {
+            'nameRu': 'Германия',
+            'nameEn': 'Germany'
+        },
+        {
+            'nameRu': 'Великобритания',
+            'nameEn': 'Great Britain'
+        },
+        {
+            'nameRu': 'Япония',
+            'nameEn': 'Japan'
+        },
+        {
+            'nameRu': 'Китай',
+            'nameEn': 'China'
+        },
+        {
+            'nameRu': 'Корея Южная',
+            'nameEn': 'South Korea'
+        },
+        {
+            'nameRu': 'Индия',
+            'nameEn': 'India'
+        },
+        {
+            'nameRu': 'СССР',
+            'nameEn': 'SSSR'
+        },
+        {
+            'nameRu': 'Франция',
+            'nameEn': 'France'
+        }
+    ],
+    'countries': [
+        {
+            'nameRu': 'Россия',
+            'nameEn': 'Russia'
+        },
+        {
+            'nameRu': 'США',
+            'nameEn': 'USA'
+        },
+        {
+            'nameRu': 'Германия',
+            'nameEn': 'Germany'
+        },
+        {
+            'nameRu': 'Великобритания',
+            'nameEn': 'Great Britain'
+        },
+        {
+            'nameRu': 'Япония',
+            'nameEn': 'Japan'
+        },
+        {
+            'nameRu': 'Китай',
+            'nameEn': 'China'
+        },
+        {
+            'nameRu': 'Корея Южная',
+            'nameEn': 'South Korea'
+        },
+        {
+            'nameRu': 'Индия',
+            'nameEn': 'India'
+        },
+        {
+            'nameRu': 'СССР',
+            'nameEn': 'SSSR'
+        },
+        {
+            'nameRu': 'Франция',
+            'nameEn': 'France'
+        }
+    ],
+    'years': [2019, 2010, 1980, 2020],
+    'rating': 10,
+    'grade': 10,
     'producer': '',
     'actor': ''
 }

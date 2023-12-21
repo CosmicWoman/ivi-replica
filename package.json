@@ -1,9 +1,10 @@
 {
-  "name": "movies-website",
+  "name": "ivi-replica",
   "version": "0.1.0",
-  "homepage": "https://mspolermo.github.io/movies-website",
+  "homepage": "https://cosmicwoman.github.io/ivi-replica/",
   "private": true,
   "dependencies": {
+    "@react-oauth/google": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -13,10 +14,13 @@
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "@types/react-redux": "^7.1.25",
-    "axios": "^1.3.5",
+    "axios": "^1.4.0",
+    "concurrently": "^8.2.2",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
+    "jwt-decode": "^3.1.2",
+    "next-i18next": "^13.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.2",
@@ -33,7 +37,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
+    "server": "json-server -w db.json -p 5000",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -84,5 +90,10 @@
     "prop-types": "^15.8.1",
     "storybook": "^7.0.5",
     "webpack": "^5.79.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

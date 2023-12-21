@@ -43,18 +43,11 @@
         align-items: flex-start;
     }
     &__heading {
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-        font-style: normal;
+        @extend %standartText; 
         color: $headingColor;
     }
     &__text {
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 400;
-        font-style: normal;
-        color: $textColor;
+        @extend %standartText; 
     }
     &__btn {
         display: flex;

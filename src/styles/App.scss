@@ -6,7 +6,7 @@ body {
     font-family: iviSans,sans-serif;
     font-weight: normal;
     font-style: normal;
-    background-color: #100e19;
+    background-color: $backgroundColor;
 }
 .container {
     max-width: 1300px;
@@ -16,15 +16,3 @@ body {
     padding-right: 42px;
 }
 
-.heading {
-    margin: 50px 0;
-    color: $headingColor;
-    font-size: 34px;
-    font-weight: 600;
-    text-align: center;
-    //z-index: 1;
-    @include hover-colorAnim($textColor, $headingColor)
-}
-.empty{
-    height: 750px;
-}

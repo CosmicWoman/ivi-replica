@@ -7,11 +7,7 @@
     align-items: center;
     &__text {
         padding: 0 16px;
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 400;
-        font-style: normal;
-        color: $textColor;
+        @extend %standartText; 
         text-align: center;
     }
 }

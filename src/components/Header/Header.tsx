@@ -127,29 +127,27 @@ const Header = () => {
         searchSection.current.classList.toggle('searchBlock__hidden');
 
         if ( e.currentTarget.className.includes('headerSections__btn-block_search')) {
-            window.onscroll = () => { window.scroll(0, 0); };
+            document.body.style.overflow = 'hidden';
         } else {
-            window.onscroll = () => { window.scroll(); };
+            document.body.style.overflow = '';
         };
     };
     
     return (
-        <div className='header'>
+        <div className='header' data-testid='header'>
             <LanguageChanger />
 
             <div className="header__body">
 
                 <div  className="container header__container" ref={ref} id='header-top'>
-                    <HeaderSections 
-                        hoverListener={hoverListener} 
-                        leaveListener={leaveListener}
-                        toggleSearchSection={toggleSearchSection} 
-                    />
+                    <HeaderSections hoverListener={hoverListener} 
+                                    leaveListener={leaveListener}
+                                    toggleSearchSection={toggleSearchSection}/>
                 </div>
 
-                <div 
-                    className="header__dropDownBody header__dropDownBody_hidden"
+                <div className="header__dropDownBody header__dropDownBody_hidden"
                     id='drop-down-block'
+                    data-testid='headerDropDownMenu'
                     style={{'width': width}} 
                     onMouseOver={hoverListener}
                     onMouseLeave={leaveListener}
@@ -166,7 +164,10 @@ const Header = () => {
                 </div>
             </div>
 
-            <HeaderSearch searchSection={searchSection} toggleSearchSection={toggleSearchSection}/> 
+            <HeaderSearch 
+                searchSection={searchSection} 
+                toggleSearchSection={toggleSearchSection}
+                /> 
         </div>
     )
 }

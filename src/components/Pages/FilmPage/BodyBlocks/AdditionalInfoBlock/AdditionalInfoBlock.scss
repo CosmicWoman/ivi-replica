@@ -13,11 +13,7 @@
         }
     }
     &__text {
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 400;
-        font-style: normal;
-        color: $textColor;
+        @extend %standartText; 
     }
     &__icons {
         width: 180px;

@@ -1,17 +1,11 @@
 @import '/src/styles/variables.scss';
 
 .searchBlock {
-    position:absolute;
+    @extend %modalWindowPreset; 
+
     width:100vw;
     height:100vh;
-    top: 0;
-    left: 0;
-    z-index: 4;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    
-    background:rgba(0,0,0,.8);
+
     &__hidden {
         display: none;
     }
@@ -30,5 +24,13 @@
         font-size: 40px;
         font-weight: 700;
         color: $headingColor;
+    }
+}
+
+@media (max-width: 1060px) {
+    .searchBlock {
+        .BigSearch {
+            transform: translateX(-30px);
+        }
     }
 }

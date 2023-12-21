@@ -65,8 +65,7 @@ const HeaderAdvertise:FC<HeaderAdvertiseProps> = ( {variant}) => {
 
     return (
         <div className={classes.advertise}>
-            <div 
-                className={classes.advertise__block}
+            <div className={classes.advertise__block}
                 onMouseOver={hoverListener}
                 onMouseOut={leaveListener}
             >
@@ -81,20 +80,18 @@ const HeaderAdvertise:FC<HeaderAdvertiseProps> = ( {variant}) => {
                     className={classes.advertise__innerHidden}
                     ref={hiddenBlock}
                 >
-                    <Button 
-                        color="red" 
-                        title={['button.header.advertise.plug']} 
-                        type="ultraWide"
-                        onClick={() => OpenUrl(link)} 
-                    />
+                    <Button color="red" 
+                            title={['button.header.advertise.plug']} 
+                            type="ultraWide"
+                            onClick={() => OpenUrl(link)}/>
+
                     <p className={classes.advertise__smallText }>{t('header.advertise.turnOff')}</p>  
                 </div>
             </div>
-            <Button 
-                svg={<Icons name='smartTV' color='#fff' size='20'/>}
-                title={['button.header.advertise.smart']}
-                onClick={() => OpenUrl('https://www.ivi.tv/pages/tvsmart/')}
-            />
+            <Button svg={<Icons name='smartTV' color='#fff' size='20'/>}
+                    title={['button.header.advertise.smart']}
+                    onClick={() => OpenUrl('https://www.ivi.tv/pages/tvsmart/')}/>
+                    
         </div>
     );
 };

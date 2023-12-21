@@ -4,12 +4,21 @@
 
     &__heading {
         margin: 40px 0;
-        font-size: 30px;
-        color: white;
+        font-size: 28px;
+        font-weight: 600;
+        color: $headingColor;
     }
     &__text {
-        max-width: 400px;
-        color: White;
+        max-width: 600px;
+        @extend %standartText;
         margin-bottom: 3000px;
     } 
+}
+
+@media (max-width: 880px) {
+    .factsBlock {
+        &__text {
+            max-width: 95%;
+        } 
+    }
 }

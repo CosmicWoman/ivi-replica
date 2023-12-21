@@ -1,13 +1,50 @@
 @import '/src/styles/variables.scss';
 
 .commentsCreatingBlock {
-    &__heading {
-        margin: 40px 0;
-        font-size: 30px;
-        color: white;
+    &__creating {
+        margin-top: 20px;
+    }
+    &__review-form{
+        &_hidden {
+            display: none;
+        }
     }
     &__text {
-        color: White;
-        margin-bottom: 3000px;
+        @extend %standartText;
+        &_last {
+            margin-top: 40px;
+            margin-bottom: 3000px; 
+            text-align: center;
+        }
     } 
+    &__btn {
+        display: flex;
+        justify-content: flex-end;
+        transform: translateX(12px);
+        &_first {
+            display: block;
+            transform: translateX(6px);
+        }
+        &_hidden {
+            display: none;
+        }
+        &_createReview {
+            margin-top: 120px;
+        }
+    }
+    &__input {
+        margin-bottom: 10px;
+    }
+    &__existsComments{
+        margin-top: 20px;
+    }
+    &__tree{
+        bottom: 50px;
+    }
+    &__comment-form {
+        margin: 10px 0 20px 120px;
+        &_hidden{
+            display: none;
+        }
+    }
 }

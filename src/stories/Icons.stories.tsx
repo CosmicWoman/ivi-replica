@@ -19,7 +19,7 @@ const meta: Meta<typeof Icons> = {
                 'person-search', 'movie-search', 'series', 'sorting', 'home',
                 'slogan-open', 'slogan-close', 'volume-down', 'keyboard', 'play',
                 'upload', 'complete', 'delete', 'edit', 'like',
-                'dislike' 
+                'dislike', 'copy', 'whatsup' 
             ],
             control: {
                 type: 'select'

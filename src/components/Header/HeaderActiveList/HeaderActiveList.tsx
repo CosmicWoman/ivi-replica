@@ -41,28 +41,26 @@ const HeaderActiveList:FC<HeaderActiveListProps> = ( { dataArray, prefixForId, o
     
     return (
         <div className={classes.activeList}>
+
             <ul className={classes.activeList__list}>
                 {dataArray.map ( 
                     (item: any) => 
-                        <a 
-                            key={`${prefixForId}-${item[0]}`} 
+                        <a key={`${prefixForId}-${item[0]}`} 
                             href={item[2]} 
                             className={classes.activeList__link}
                         >
                             {item[0] == 0
                             ?
-                                <p 
-                                    id={`${prefixForId}-${item[0]}`}
+                                <p id={`${prefixForId}-${item[0]}`}
                                     className={`${classes.activeList__item} ${classes.activeList__item_active}`}
                                     onMouseOver={hoverActivator}
                                 >
                                     {t(item[1])}
                                 </p>
                             :
-                                <p 
-                                id={`${prefixForId}-${item[0]}`}
-                                className={classes.activeList__item}
-                                onMouseOver={hoverActivator}
+                                <p id={`${prefixForId}-${item[0]}`}
+                                    className={classes.activeList__item}
+                                    onMouseOver={hoverActivator}
                                 >
                                     {t(item[1])}
                                 </p>
@@ -71,6 +69,7 @@ const HeaderActiveList:FC<HeaderActiveListProps> = ( { dataArray, prefixForId, o
                     )
                 };     
             </ul>
+            
         </div>    
     );
 };

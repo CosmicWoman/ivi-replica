@@ -1,8 +1,10 @@
 @import '/src/styles/variables.scss';
 
 .shortInfoBlock {
+    max-width: 150px;
     margin-left: 120px;
     &__img{
+        
         margin-bottom: 30px;
         max-height: 196px;
         border-radius: 10px;
@@ -33,7 +35,7 @@
         }
     }
     &__text{
-        color: $textColor;
+        @extend %standartText;
         &_btn {
             transform: translate(-20px, 6px);
         }

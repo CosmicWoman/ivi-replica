@@ -35,10 +35,14 @@ const Card:FC<CardProps> = ( { type='small', title, photoUrl, raitingKP, role, o
                 };
                 break;
             case 'big':
+                
                 setCardClass(classes.card__big);
                 setBodyClass(classes.card__body_big);
                 setImgClass(classes.card__img_big);
-                setTitleArray(title!.split(' '));
+                if (title) {
+                    setTitleArray(title.split(' '));    
+                }
+                
             break;
         }
     }, [type, raitingKP, reiting]);

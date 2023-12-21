@@ -174,7 +174,7 @@ export const InfiniteCarousel: FC<IInfiniteCarouselProps> = ({ children, block }
 			<div
 				className="carousel__prev-arrow"
 				onClick={() => actionHandler('prev')}
-				style={{ left: '10%' }}
+				style={{ left: 'calc(44vw - 550px)' }}
 			>
 				<Icons
 					name="arrowLeft"
@@ -186,7 +186,7 @@ export const InfiniteCarousel: FC<IInfiniteCarouselProps> = ({ children, block }
 			<div
 				className="carousel__next-arrow"
 				onClick={() => actionHandler('next')}
-				style={{ right: '10%' }}
+				style={{ right: 'calc(43vw - 550px)' }}
 			>
 				<Icons
 					name="arrowRight"

@@ -12,7 +12,8 @@ const PersonHeader: FC<PropsWithChildren<PersonHeaderProps>> = ({person}) => {
 
     return (
         <div className="actorHeader">
-            <div className="actorHeader__content">
+            <div data-testid='personHeader'
+                 className="actorHeader__content">
 
                 <div className="actorHeader__foto">
                     <img src={person.photo} alt=""/>

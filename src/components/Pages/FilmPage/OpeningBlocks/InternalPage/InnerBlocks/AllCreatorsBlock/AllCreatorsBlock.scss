@@ -6,7 +6,7 @@
         font-size: 20px;
         font-weight: 700;
         margin: 40px 0;
-        color: white;
+        color: $headingColor;
         &::first-letter {
             text-transform: uppercase;
         }
@@ -15,8 +15,6 @@
         max-width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        
-        column-gap: auto;
 
         justify-content: stretch;
 
@@ -40,6 +38,14 @@
     .allCreatorsBlock {
         &__cards{
             grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .allCreatorsBlock {
+        &__cards{
+            grid-template-columns: 1fr 1fr;
         }
     }
 }

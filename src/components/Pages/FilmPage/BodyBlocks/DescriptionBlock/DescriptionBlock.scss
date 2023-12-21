@@ -12,9 +12,7 @@
     }
     &__text {
         margin-bottom: 6px;
-        font-size: 15px;
-        line-height: 22px;
-        color: $textColor;
+        @extend %standartText; 
         text-align: start;
         &_active {
             color: $activeColor;
@@ -53,10 +51,8 @@
     }
     &__btn {
         padding: 10px 0;
-        font-size: 15px;
-        line-height: 22px;
+        @extend %standartText; 
         text-align: start;
-        color: $textColor;
         &_desktop {
             display: block;
         }

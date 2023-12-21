@@ -1,5 +1,6 @@
 import {Meta, StoryObj} from "@storybook/react";
 import ButtonReset from "../components/Filters/ButtonReset/ButtonReset";
+import { BrowserRouter } from "react-router-dom";
 
 const meta: Meta<typeof ButtonReset> = {
     title: 'Components/ButtonReset',
@@ -25,9 +26,11 @@ type Story = StoryObj<typeof ButtonReset>;
 
 export const BtnResetFilters: Story = {
     render: (args) => (
-        <div {...args} style={{'backgroundColor': '#1f1b2e', 'minHeight': 60}}>
-            <ButtonReset selectedFilters={args.selectedFilters} activeFilters={args.activeFilters} setSelectedFilters={args.setSelectedFilters} />
-        </div>
+        <BrowserRouter >
+            <div {...args} style={{'backgroundColor': '#1f1b2e', 'minHeight': 60}}>
+                <ButtonReset selectedFilters={args.selectedFilters} activeFilters={args.activeFilters} setSelectedFilters={args.setSelectedFilters} />
+            </div>
+         </BrowserRouter>
     ),
     args: {
         selectedFilters: {

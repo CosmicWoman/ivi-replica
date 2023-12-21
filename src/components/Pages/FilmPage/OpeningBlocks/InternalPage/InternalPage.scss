@@ -3,28 +3,14 @@
 .internalPage {
     padding-top: 40px;
 
-    position: absolute;
-
-    width: 100%;
-    min-height: 200%;
-
-    top: 0;
+    @extend %modalWindowPreset;
     bottom: auto;
-    left: 0;
-    right: 0;
-    
-    z-index: 4;
-
-    display: flex;
-    flex-direction: column;
-
-    background:rgba(0,0,0,.9);
 
     &__hidden {
         display: none;
     }
-
     &__previous{
+        white-space:nowrap;
         align-self: flex-start;
         display: flex;
         margin-left: 10px;
@@ -33,25 +19,20 @@
         &:hover {
             .internalPage__svg_big{
                 transform: scale(1.1);
-                
             }
             .internalPage__text_btn {
                 color: white;
             }
         }
     }
-
     &__main {
-        //height: 100%;
-    
-        //padding: 0 150px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between; 
     }
-
     &__body {
-        width: 75%;
-        max-width: 556px;
+        min-width: 600px;
+        max-width: 600px;
     }
     &__heading{
         margin-bottom: 40px;
@@ -61,9 +42,7 @@
         font-weight: 900;
         font-style: normal;
         color: $headingColor;
-
     }
-
     &__text{
         color: $textColor;
         &_btn {
@@ -73,20 +52,39 @@
 
 }
 
-
-
 @media (max-width: 1160px) {
     .internalPage{
         &__main {
+            margin: 0;
             padding: 0 42px;
         }
     }
 };
-
-@media (max-width: 880px) {
+@media (max-width: 1060px) {
     .internalPage{
         &__body {
-            width: 100%;
+            min-width: 100%;
+        }
+        &__heading{
+            text-align: center;
         }
     }
 }
+@media (max-width: 880px) {
+    .internalPage{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+@media (max-width: 400px) {
+    .internalPage{
+        &__main {
+            padding: 0 20px;
+        }
+        &__heading{
+            font-size: 30px;
+            line-height: 40px;
+            font-weight: 600;
+        }
+    }
+};

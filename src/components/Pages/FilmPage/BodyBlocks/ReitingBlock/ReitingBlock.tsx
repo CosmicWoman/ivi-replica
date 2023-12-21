@@ -6,7 +6,7 @@ import { ReitingBlockProps } from "../../../../../types/filmPageTypes";
 import { useDispatch } from "react-redux";
 import { gradeTrue } from "../../../../../store/reducers/gradeReducer";
 
-const ReitingBlock:FC<ReitingBlockProps> = ({ratingKp , votesKP}) => {
+const ReitingBlock:FC<ReitingBlockProps> = ({ratingKp , votesKp}) => {
     const {t, i18n} = useTranslation();
 
     let reiting = (Math.round(ratingKp! * 10)/10);
@@ -34,7 +34,7 @@ const ReitingBlock:FC<ReitingBlockProps> = ({ratingKp , votesKP}) => {
                 <div className="reitingBlock__info">
                     <p className="reitingBlock__heading">{t('filmPage.reitingBlock.reit')} </p>
                     <p className="reitingBlock__text">{t('filmPage.reitingBlock.int')}</p>
-                    <p className="reitingBlock__text reitingBlock__text_reit">{votesKP} {t('filmPage.reitingBlock.votes')}</p>
+                    <p className="reitingBlock__text reitingBlock__text_reit">{votesKp} {t('filmPage.reitingBlock.votes')}</p>
                 </div> 
             </div>
             <div className="reitingBlock__btn" >

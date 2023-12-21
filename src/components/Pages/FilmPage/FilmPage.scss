@@ -38,18 +38,15 @@
     &__video {
         position: relative;
         width: 100%;
-        //height: auto;
         margin: 20px auto;
-        //background: #eee;
         &::after {
             content: '';
             display: block;
-            padding-top: 50%; /*установите ваши пропорции, в данном случае квадрат*/
+            padding-top: 50%; /*установить пропорции, в данном случае квадрат*/
           }
     }
     &__videoPlayer{
         position: absolute;
-        //background: #555;
         top: 0;
         left: 0;
         bottom: 0;

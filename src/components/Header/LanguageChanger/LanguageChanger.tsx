@@ -3,6 +3,7 @@ import './LanguageChanger.scss'
 import { useTranslation } from 'react-i18next';
 
 const  LanguageChanger = () => {
+
     const { t, i18n } = useTranslation();
     const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
   

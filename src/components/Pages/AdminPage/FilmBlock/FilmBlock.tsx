@@ -1,22 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import Search from "../../../UI/Inputs/Search/Search";
+import MyInput from "../../../UI/Inputs/MyInput/MyInput";
 import {Item, MovieProps, MovieSearchProps} from "../../../../types/filtersTypes";
 import Button from "../../../UI/Buttons/Button/Button";
 import axios from "axios";
 import RowSearchResult from "../../../Search/RowSearchResult/RowSearchResult";
 import './filmBlock.scss'
 import {useTranslation} from "react-i18next";
+import Icons from "../../../Icons/Icons";
 
 const Name = {
     nameRu: '',
     nameEn: '',
-    key: 0
+    key: ''
 }
 
 const FilmBlock = () => {
     const [film, setFilm] = useState<MovieSearchProps>(Name)
     const [films, setFilms] = useState<MovieProps[]>([])
     const [searchQuery, setSearchQuery] = useState('')
+    const [active, setActive] = useState(false)
     const {t, i18n} = useTranslation();
 
     useEffect(() => {
@@ -28,7 +30,7 @@ const FilmBlock = () => {
     }, [])
 
     useEffect(() => {
-        if(film) {
+        if (film) {
             inputName(film.nameEn)
             inputName(film.nameRu)
         }
@@ -55,56 +57,66 @@ const FilmBlock = () => {
     }
 
     function deleteFilm() {
-        if(film){
-            const response = axios.delete(`http://localhost:5000/film/${film.key}`)
+        if (film !== Name) {
+            const response = axios.delete(`http://localhost:5000/film/${film.key}`,
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            setFilm(Name)
+            setActive(true)
         }
     }
 
     function editFilm() {
-        if(film){
+        if (film !== Name) {
             const response = axios.patch(`http://localhost:5000/film/${film.key}`, {
-                params: {
-                    filmNameRu: film?.nameRu,
-                    filmNameEn: film?.nameEn
-                }
+                filmNameRu: film?.nameRu,
+                filmNameEn: film?.nameEn
+            },
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
+            setFilm(Name)
+            setActive(true)
         }
     }
 
     function titleLang(film: MovieSearchProps) {
-        if(i18n.language === 'en' && film.nameEn){
+        if (i18n.language === 'en' && film.nameEn) {
             return film.nameEn
         } else {
             return film.nameRu
         }
     }
 
-    function actionSearch(value:MovieSearchProps) {
+    function actionSearch(value: MovieSearchProps) {
         setFilm(value)
         setSearchQuery('')
     }
 
     function renderResult(value: MovieProps) {
-        if(searchQuery){
+        if (searchQuery) {
             return (<RowSearchResult title={titleLang(value)} key={value.key} onClick={() => actionSearch(value)}/>
             )
         }
     }
 
     function inputName(value: string) {
-        if(film){
-           return value
+        if (film) {
+            return value
         }
     }
 
     return (
         <div className="FilmBlock">
             <div className="FilmBlock__search">
-                <Search result={films}
-                        renderResult={renderResult}
-                        placeholder={'Начните вводить название фильма'} cl={false}
-                        searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}/>
+                <MyInput result={films}
+                         renderResult={renderResult}
+                         placeholder={t('adminPage.placeholder')} cl={false}
+                         searchQuery={searchQuery}
+                         setSearchQuery={setSearchQuery}
+                         search={true}
+                />
             </div>
 
             <div className="FilmBlock__result">
@@ -112,7 +124,7 @@ const FilmBlock = () => {
                     <input className="FilmBlock__nameRu_input"
                            type="text"
                            value={film ? inputName(film.nameRu) : ''}
-                           onChange={e => setFilm( {...film, nameRu: e.target.value})}
+                           onChange={e => setFilm({...film, nameRu: e.target.value})}
                     />
                 </div>
                 <div className="FilmBlock__nameEn">
@@ -127,15 +139,34 @@ const FilmBlock = () => {
             <div className="FilmBlock__change">
                 <Button type='default'
                         color='default'
-                        title={['Сохранить изменения']}
+                        title={[t('adminPage.saveChange')]}
                         onClick={() => editFilm()}/>
             </div>
             <div className="FilmBlock__delete">
                 <Button type='default'
                         color='default'
-                        title={['Удалить фильм']}
+                        title={[t('adminPage.delete')]}
                         onClick={() => deleteFilm()}/>
             </div>
+
+            {active &&
+                <div className="FilmBlock__modal modal">
+                    <div className="modal__content">
+
+                        <Icons className='modal__icons' name='complete' size='30'/>
+
+                        <div className="modal__title">
+                            {t('adminPage.changes')}
+                        </div>
+
+                        <div className="modal__button">
+                            <Button type='default'
+                                    color='transparent'
+                                    title={[t('adminPage.ok')]}
+                                    onClick={() => setActive(false)}/>
+                        </div>
+                    </div>
+                </div>}
 
         </div>
     );

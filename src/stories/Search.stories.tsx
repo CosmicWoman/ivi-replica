@@ -1,11 +1,11 @@
 import {Meta, StoryObj} from "@storybook/react";
-import Search from "../components/UI/Inputs/Search/Search";
+import MyInput from "../components/UI/Inputs/MyInput/MyInput";
 import RowSearchResult from "../components/Search/RowSearchResult/RowSearchResult";
 
 
-const meta: Meta<typeof Search> = {
+const meta: Meta<typeof MyInput> = {
     title: 'UI/Search',
-    component: Search,
+    component: MyInput,
     tags: ['autodocs'],
     argTypes: {
         result: {
@@ -32,7 +32,7 @@ const meta: Meta<typeof Search> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Search>;
+type Story = StoryObj<typeof MyInput>;
 
 export const NotActive: Story = {
     args: {

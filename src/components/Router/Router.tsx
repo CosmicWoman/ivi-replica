@@ -7,10 +7,12 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { MainPage } from '../Pages/MainPage/MainPage';
 import AdminPage from "../Pages/AdminPage/AdminPage";
+import { AuthPage } from '../Pages/AuthPage/AuthPage';
+import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 
 const Router = () => {
 	return (
-		<BrowserRouter>
+		<div>
 			<Header />
 			<Routes>
 				<Route path={'/movies-website/person/:id'} element={<PersonPage />} />
@@ -23,13 +25,14 @@ const Router = () => {
 
 				<Route path={'/movies-website/film/:id'} element={<FilmPage />} />
 
-				<Route path={'/movies-website/'} element={<MainPage />} />
-				<Route path={'*'} element={<MainPage />} />
+				<Route path={'/movies-website'} element={<MainPage />} />
+				<Route path={'*'} element={<NotFoundPage />} />
 
 				<Route path={'/movies-website/admin/'} element={<AdminPage />} />
+				<Route path={'/movies-website/auth'} element={<AuthPage />} />
 			</Routes>
 			<Footer />
-		</BrowserRouter>
+		</div>
 	);
 };
 

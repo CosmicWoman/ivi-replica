@@ -1,14 +1,15 @@
-import React, {FC, PropsWithChildren, useState} from 'react';
+import React, {FC, PropsWithChildren, useEffect, useState} from 'react';
 import FilterButton from "./FilterButton/FilterButton";
 import './filters.scss';
 import FilterTwoBlocks from "./FilterTypes/FilterGenre&Countries/FilterTwoBlocks";
 import ButtonReset from "./ButtonReset/ButtonReset";
-import {activeFiltersProps, Item, startFiltersProps} from "../../types/filtersTypes";
+import {activeFiltersProps, startFiltersProps} from "../../types/filtersTypes";
 import TypeYear from "./FilterTypes/FilterYears/TypeYear";
 import TypeSearch from "./FilterTypes/FilterProducer&Actor/TypeSearch";
 import TypeRangeSlider from "./FilterTypes/FilterRating&Grade/TypeRangeSlider";
 import {useTranslation} from "react-i18next";
 import {languageFilters} from "../Pages/MoviesPage/utils";
+import AxiosErrorCheck from "../../hooks/AxiosErrorCheck";
 
 interface FiltersProps {
     activeFilters: activeFiltersProps,
@@ -17,9 +18,19 @@ interface FiltersProps {
     setSelectedFilters: (selectedFilters: activeFiltersProps) => void
 }
 
-const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters, selectedFilters, setSelectedFilters}) => {
-    const { t, i18n } = useTranslation();
+const Filters: FC<PropsWithChildren<FiltersProps>> = ({
+                                                          activeFilters,
+                                                          allFilters,
+                                                          selectedFilters,
+                                                          setSelectedFilters
+                                                      }) => {
+    const {t, i18n} = useTranslation();
     const [activeBlock, setActiveBlock] = useState<string[]>([])
+    const [errorAxios, setErrorAxios] = useState(true)
+
+    useEffect(() => {
+        axiosCheck()
+    }, [errorAxios])
 
     function selectedGenres(genre: string) {
         let arrGenres = selectedFilters.genres
@@ -42,7 +53,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
         setSelectedFilters({...selectedFilters, countries: arrCountries})
     }
 
-    function selectedYears(year: number) {
+    function selectedYears(year: number | null) {
         if (selectedFilters.years !== year) {
             setSelectedFilters({...selectedFilters, years: year})
         }
@@ -72,13 +83,19 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
         }
     }
 
+    function axiosCheck(){
+        if(errorAxios !== AxiosErrorCheck('films/')){
+            setErrorAxios(AxiosErrorCheck('films/'))
+        }
+    }
+
     return (
         <div className='filters'>
             <div className="filters__content">
                 <div className="filters__blocks">
 
                     {activeBlock.length > 0 ? <div className="close_block"
-                                         onClick={() => setActiveBlock([])}
+                                                   onClick={() => setActiveBlock([])}
                     ></div> : ''}
 
                     <FilterButton filterName={t('filters.filterButton.genre')}
@@ -115,7 +132,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                         <TypeYear allValues={allFilters.years}
                                   selectValues={selectedFilters.years}
                                   handleChangeFilter={selectedYears}
-                                  />
+                        />
                     </FilterButton>
 
 
@@ -126,7 +143,7 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                   setActiveBlock={setActiveBlock}>
                         <TypeRangeSlider handleChangeFilter={selectedRating}
                                          blockName='rating'/>
-                        </FilterButton>
+                    </FilterButton>
 
                     <FilterButton filterName={t('filters.filterButton.grade')}
                                   selectedFiltersBy={selectedFilters.grade === 0 ? '' : selectedFilters.grade}
@@ -137,26 +154,30 @@ const Filters: FC<PropsWithChildren<FiltersProps>> = ({activeFilters, allFilters
                                          blockName='grade'/>
                     </FilterButton>
 
-                    <FilterButton filterName={t('filters.filterButton.producer')}
-                                  selectedFiltersBy={selectedFilters.producer}
-                                  activeBlock={activeBlock}
-                                  blockName='producer'
-                                  setActiveBlock={setActiveBlock}>
-                        <TypeSearch handleChangeFilter={selectedProducer}
-                                    professionId={2}
-                        />
-                    </FilterButton>
+                    {errorAxios ?
+                        <FilterButton filterName={t('filters.filterButton.producer')}
+                                      selectedFiltersBy={selectedFilters.producer}
+                                      activeBlock={activeBlock}
+                                      blockName='producer'
+                                      setActiveBlock={setActiveBlock}>
+                            <TypeSearch handleChangeFilter={selectedProducer}
+                                        professionId={2}
+                                        setActiveBlock={setActiveBlock}
+                            />
+                        </FilterButton> : ''}
 
-                    <FilterButton filterName={t('filters.filterButton.actor')}
-                                  selectedFiltersBy={selectedFilters.actor}
-                                  activeBlock={activeBlock}
-                                  blockName='actor'
-                                  setActiveBlock={setActiveBlock}>
-                        <TypeSearch handleChangeFilter={selectedActor}
-                                    professionId={1}
-                        />
-                    </FilterButton>
-
+                    {errorAxios ?
+                        <FilterButton filterName={t('filters.filterButton.actor')}
+                                      selectedFiltersBy={selectedFilters.actor}
+                                      activeBlock={activeBlock}
+                                      blockName='actor'
+                                      setActiveBlock={setActiveBlock}>
+                            <TypeSearch handleChangeFilter={selectedActor}
+                                        professionId={1}
+                                        setActiveBlock={setActiveBlock}
+                            />
+                        </FilterButton> : ''
+                    }
                 </div>
 
                 <div className="filters__button">

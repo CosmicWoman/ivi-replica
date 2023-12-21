@@ -10,6 +10,9 @@ import HeaderActiveList from "../../HeaderActiveList/HeaderActiveList";
 import Tile from "../../../UI/Buttons/Tile/Tile";
 
 import OpenUrl from "../../../../hooks/OpenUrl";
+import { useTypedSelector } from "../../../../hooks/useTypedSelector";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../../store/reducers/authReducer";
 
 const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
     const hoverActiveListData = [
@@ -23,6 +26,16 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
 
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    
+    const dispatch = useDispatch();
+    const login = useTypedSelector(state => state.auth.isAuth);
+    const admin = useTypedSelector(state => state.auth.isAdmin);
+    const mail = useTypedSelector(state => state.auth.user.email);
+    const [nickName, setNickName] = useState(mail?.split('@')[0].slice(0,10));
+
+    useEffect( () => {
+        setNickName(mail?.split('@')[0].slice(0,10))
+    }, [login])
 
     const [activeHover, setActiveHover] = useState<string>('ivi');
     let imgUrl = 'https://www.ivi.ru/pages/newseason/assets/images/new-logo-short.svg'
@@ -50,9 +63,15 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
     };
 
     useEffect( () => {
-        passiveBlock.current.classList.toggle('headerMenuLogin__hidden')
-        activeBlock.current.classList.toggle('headerMenuLogin__hidden')
+        if (blockStatus) {
+            passiveBlock.current.classList.add('headerMenuLogin__hidden')
+            activeBlock.current.classList.remove('headerMenuLogin__hidden')  
+        } else {
+            passiveBlock.current.classList.remove('headerMenuLogin__hidden')
+            activeBlock.current.classList.add('headerMenuLogin__hidden')  
+        }
     },[blockStatus])
+
 
     return (
         <div className="headerMenuLogin headerMenuLogin__hidden" id={id} onMouseLeave={closeBlock}>
@@ -140,16 +159,30 @@ const HeaderMenuLogin:FC<HeaderMenuProps> = ({id}) => {
             <div className="headerMenuLogin__column headerMenuLogin__column_right">
 
                 <div className=" headerMenuLogin__passiveBlock headerMenuLogin__hidden" ref={passiveBlock}>
-                    <Button 
+                   { (!login) && <Button 
                         title={['button.header.menuLogin.enter']} 
                         color="red" 
                         type="ultraWide"
-                        onClick={() => OpenUrl('https://www.ivi.ru/profile')}
-                    />
+                        onClick={() => navigate (`/movies-website/auth/`)}
+                    />}
+                    { (login) && 
                     <div>
-                        <a className=" headerMenuLogin__link" onClick={() => navigate(`/movies-website/admin`)}>
-                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">AdminPage</p>
-                        </a>
+                        <p className="headerMenuLogin__heading headerMenuLogin__heading_small">
+                            {t('header.menuLogin.welcome')}, {nickName} !
+                            </p>
+                        <Button 
+                            title={['header.menuLogin.logout']} 
+                            color="red" 
+                            type="ultraWide"
+                            onClick={() => dispatch(logout())}
+                        />
+                    </div>}
+                    <div>
+                        { (admin) && <a className=" headerMenuLogin__link" onClick={() => navigate(`/movies-website/admin`)}>
+                            <p className="headerMenuLogin__text headerMenuLogin__text_additional">
+                                {t('header.menuLogin.admin')}
+                            </p>
+                        </a>}
                         <a className=" headerMenuLogin__link" href="https://www.ivi.ru/profile/settings">
                             <p className="headerMenuLogin__text headerMenuLogin__text_additional">{t('header.menuLogin.settings')}</p>
                         </a>

@@ -6,6 +6,7 @@
 		"series": "Series",
 		"mults": "Cartoons",
 		"search": "Search",
+		"searchPlaceholder": "Movies, persons, genres",
 		"menuFilms": {
 			"genres": "Genres",
 			"arthouse": "Arthouse",
@@ -19,7 +20,7 @@
 			"dram": "Dramas",
 			"history": "Historical",
 			"catastrophes": "Catastrophes",
-			"comedy": "Comedy",
+			"comedy": "Comedies",
 			"criminals": "Criminal",
 			"melodrams": "Melodramas",
 			"mystical": "Mystical",
@@ -35,6 +36,7 @@
 			"abroad": "USA",
 			"ussr": "Soviet cinema",
 			"years": "Years",
+			"2024": "Movies 2024",
 			"2023": "Movies 2023",
 			"2022": "Movies 2022",
 			"2021": "Movies 2021",
@@ -162,6 +164,9 @@
 			"help": "Help",
 			"subs": "Subscriptions",
 			"plug": "To plug",
+			"logout": "Log out",
+			"welcome": "Welocome",
+			"admin": "Administrator page",
 			"activeList": {
 				"easy": "Easy Ivi",
 				"ivi": "Ivi",
@@ -250,7 +255,8 @@
 	},
 	"filters": {
 		"search": {
-			"placeholder-small": "Start typing"
+			"placeholder-small": "Start typing",
+			"result": "Clear result"
 		},
 		"filterButton": {
 			"genre": "Genres",
@@ -280,12 +286,13 @@
 			"popularity": "Popularity",
 			"rating": "Rating",
 			"novelty": "Novelty",
-            "alphabet": "Alphabet"
+			"alphabet": "Alphabet"
 		}
 	},
 	"moviesPage": {
 		"title": "Movies",
 		"filters-genre": "All genres",
+		"genre": "Genre",
 		"filters-countries": "All countries",
 		"filters-year": "All years",
 		"btn": "Show more",
@@ -360,7 +367,44 @@
 			"all": "on all devices",
 			"available": "The application is available for download on iOS, Android, SmartTV and set-top boxes",
 			"connect": "Connect devices"
- 		}     
+		},
+		"sharePanel": {
+			"copy": "Copy link",
+			"vk": "Vkontakte",
+			"ok": "Odnoklassniki"
+		}
+	},
+	"internalPage": {
+		"toFilm": "To movie",
+		"iPnavPanel": {
+			"creators": "Creators",
+			"reviews": "Reviews",
+			"facts": "Facts",
+			"trailers": "Trailers"
+		},
+		"allCreatorsBlock": {
+			"movies": " movies",
+			"show": "Show more"
+		},
+		"commentsCreatingBlock": {
+			"writeReview": "Write a review",
+			"reviewName": "Review title",
+			"reviewText": "Review text",
+			"createReview": "Create a review",
+			"commentText": "Comment text",
+			"send": "Send",
+			"no": "Unfortunately there are no reviews yet",
+			"comment": "Comment",
+			"alert": "All fields must be filled"
+		},
+		"factsBlock": {
+			"facts": "Movie facts",
+			"noInfo": "Unfortunately, we haven't got additional information."
+		},
+		"treilersBlock": {
+			"trailer": "Trailers",
+			"noInfo": "No trailers found for this movie"
+		}
 	},
 	"card": {
 		"reit": "Ivi",
@@ -390,5 +434,31 @@
 	"breadcrumbs": {
 		"films": "Films",
 		"home": "My Ivi"
+	},
+	"adminPage": {
+		"ru": "Title in Russian",
+		"en": "Title in English",
+		"change": "Make changes",
+		"placeholder": "Start typing...",
+		"saveChange": "Save changes",
+		"delete": "Delete",
+		"changes": "Changes applied",
+		"ok": "Ok"
+	},
+	"authPage": {
+		"signUp": "Sign up",
+		"signIn": "Sign in",
+		"signUpBtn": "Sign up",
+		"signInBtn": "Sign in",
+		"switchToSignIn": "Already have an account?",
+		"switchToSignUp": "Not signed up yet?",
+		"password": "Password",
+		"createPassword": "Create a password",
+		"VKauth": "Sign up with VK",
+		"locale": "en"
+	},
+	"notFoundPage": {
+		"error": "Error",
+		"text": "The requested page doesn't exist"
 	}
 }

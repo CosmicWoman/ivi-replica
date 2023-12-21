@@ -5,7 +5,7 @@
     flex-direction: column;
     text-align: center;
     &__heading {
-        margin-bottom: 12px;
+        margin: 12px 0;
         font-size: 42px;
         line-height: 44px;
         font-weight: 700;
@@ -13,15 +13,13 @@
     }
     &__text {
         margin-bottom: 4px;
-        font-size: 15px;
-        line-height: 22px;
-        color: $textColor;
+        @extend %standartText; 
         &_first {
             margin-bottom: 0px;
         }
     }
     &__link{
-        @include hover-colorAnim ($activeColor, $textColor)
+        @include hover-colorAnim ($activeColor, $textColor);
     }
     &__additional {
         margin: 0 auto;

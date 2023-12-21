@@ -17,6 +17,6 @@
     }
     &__text{
         padding-top: 30px;
-        color: $textColor;
+        @extend %standartText;
     }
 }

@@ -10,29 +10,29 @@ import { useDispatch } from "react-redux";
 import { internalPageTrue } from "../../../../../store/reducers/internalPageReducer";
 import { allCreatorsBlockTrue } from "../../../../../store/reducers/allCreatorsBlockReducer";
 
-const CreatorsBlock:FC<CreatorsBlockProps> = ({creators}) => {
+const CreatorsBlock:FC<CreatorsBlockProps> = ({persons}) => {
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [actors, setActors] = useState(creators.slice(0,10));
+    const [actors, setActors] = useState(persons.slice(0,10));
 
     useEffect( () => {
-        let filtredList = creators.filter(actor => actor.professions[0].name === 'актеры');
+        let filtredList = persons.filter(actor => actor.professions[0].name === 'актеры');
         if (filtredList.slice(0,10).length < 10) {
-            setActors(creators.slice(0,10));
+            setActors(persons.slice(0,10));
         } else {
             setActors(filtredList.slice(0,10));    
         }
-    },[creators]);
+    },[persons]);
 
     useEffect( () => {
-        setActors(creators.slice(0,0));  
+        setActors(persons.slice(0,0));  
 
         setTimeout( () => {
-            let filtredList = creators.filter(actor => actor.professions[0].name === 'актеры');
+            let filtredList = persons.filter(actor => actor.professions[0].name === 'актеры');
             if (filtredList.slice(0,10).length < 10) {
-                setActors(creators.slice(0,10));
+                setActors(persons.slice(0,10));
             } else {
                 setActors(filtredList.slice(0,10));    
             } 

@@ -11,8 +11,7 @@
         align-items: center;
     }
     &__text {
-        font-size: 14px;
-        color: $textColor;
+        @extend %standartText;
     }
     &__btn {
         background-color: transparent;

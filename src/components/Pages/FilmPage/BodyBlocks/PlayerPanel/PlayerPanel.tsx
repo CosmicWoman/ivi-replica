@@ -6,6 +6,8 @@ import Button from "../../../../UI/Buttons/Button/Button";
 import { useTypedSelector } from "../../../../../hooks/useTypedSelector";
 import { useDispatch } from "react-redux";
 import { bookmarkFalse, bookmarkTrue } from "../../../../../store/reducers/bookmarkReducer";
+import { bigPlayerTrue } from "../../../../../store/reducers/bigPlayerReducer";
+import { sharePanelTrue } from "../../../../../store/reducers/sharePanelReducer";
 
 const PlayerPanel = () => {
     const {t, i18n} = useTranslation();
@@ -19,6 +21,13 @@ const PlayerPanel = () => {
     const onDecrement = () => {
         dispatch(bookmarkFalse());
     };
+    const openPlayer = () => {
+        dispatch(bigPlayerTrue());
+    };
+
+    const openSharePanel = () => {
+        dispatch(sharePanelTrue())
+    }
 
     useEffect( () => {
         dispatch(bookmarkFalse())
@@ -31,6 +40,7 @@ const PlayerPanel = () => {
                 <Button 
                     title={['filmPage.playerPanel.trailer']} 
                     svg={<Icons name="play" size="30"/>}
+                    onClick={openPlayer}
                 />
                 { (value)
                     ?
@@ -49,6 +59,7 @@ const PlayerPanel = () => {
                 
                 <Button 
                     svg={<Icons name="upload" size="30" className="playerPanel__svg_upload"/>}
+                    onClick={openSharePanel}
                 />
             </div>
 
@@ -58,6 +69,7 @@ const PlayerPanel = () => {
                     type="ultraWide"
                     title={['filmPage.playerPanel.trailer']} 
                     svg={<Icons name="play" size="30"/>}
+                    onClick={openPlayer}
                 />
 
                 <div className="playerPanel__btns">
@@ -85,6 +97,7 @@ const PlayerPanel = () => {
                         <Button 
                             type="ultraWide"
                             svg={<Icons name="upload" size="30" className="playerPanel__svg_upload"/>}
+                            onClick={openSharePanel}
                         />
                     </div> 
 
@@ -93,7 +106,7 @@ const PlayerPanel = () => {
 
             <div className="playerPanel__mobile">
 
-                <div className="playerPanel__btn">
+                <div className="playerPanel__btn" onClick={openPlayer}>
                     <Icons 
                         name="play"
                         size="26px"
@@ -122,7 +135,7 @@ const PlayerPanel = () => {
                         }
                 
 
-                <div className="playerPanel__btn">
+                <div className="playerPanel__btn" onClick={openSharePanel}>
                     <Icons 
                         name="upload"
                         size="26px"

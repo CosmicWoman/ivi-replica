@@ -5,6 +5,7 @@ import FilmCard from "../FilmCard/FilmCard";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import AxiosErrorCheck from "../../hooks/AxiosErrorCheck";
 
 interface IFilmsCompilationProps {
 	variant: string
@@ -16,10 +17,12 @@ interface IFilmsCompilationProps {
 export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, variant, similarFilms }) => {
 	const navigate = useNavigate()
 	const [films, setFilms] = useState<Array<any>>([])
+	const [errorAxios, setErrorAxios] = useState(true)
 
 	const { t, i18n } = useTranslation([]);
 
 	useEffect(() => {
+		axiosCheck()
 		if (variant === 'similarFilms' && similarFilms) {
 			convertData(similarFilms)
 		}
@@ -29,13 +32,19 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 	}, [])
 
 	async function fetchData() {
-		const response = await axios.get('http://localhost:5000/films', {
-			params: {
-				perPage: 19,
-				page: 1,
-				genres: genre
-			}
-		})
+		let response;
+		if (errorAxios){
+			response = await axios.get(`http://localhost:5000/${genre}`)
+		} else {
+			response = await axios.get('http://localhost:5000/films', {
+				params: {
+					perPage: 19,
+					page: 1,
+					genres: genre
+				}
+			})
+		}
+
 		const movies = response.data.map((item: any) => {
 			return {
 				key: item.id,
@@ -74,9 +83,15 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 		setFilms(movies)
 	}
 
-	function linkToFilm() {
+	function linkToGenre() {
 		if (variant === 'genreCompilation') {
 			navigate(`/movies-website/films/genre/${genre}`)
+		}
+	}
+
+	function axiosCheck(){
+		if(errorAxios !== AxiosErrorCheck('films/')){
+			setErrorAxios(AxiosErrorCheck('films/'))
 		}
 	}
 
@@ -85,7 +100,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 			<div className="pageSection__container">
 				<div className="gallery">
 					<div
-						onClick={linkToFilm}
+						onClick={linkToGenre}
 						className="gallery__blockHeader"
 					>
 						{
@@ -113,6 +128,7 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 								return (
 									<div key={i.key} className="gallery__film">
 										<FilmCard
+											icons={variant === 'genreCompilation' && true}
 											film={i}
 											onClick={(movie) => navigate('/movies-website/film/' + movie.key)}
 										/>
@@ -134,4 +150,3 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 
 	);
 }
-

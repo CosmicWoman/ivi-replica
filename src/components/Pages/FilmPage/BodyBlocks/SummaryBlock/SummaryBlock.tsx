@@ -75,7 +75,7 @@ const SummaryBlock:FC<SummaryBlockProps> = ({filmName, year, genres, movieLength
     
     return (
 
-        <div className="summaryBlock">
+        <div className="summaryBlock"  data-testid='summaryBlock'>
 
             <h2 className="summaryBlock__heading">{filmName} ({type} {year})</h2>
             
@@ -111,7 +111,7 @@ const SummaryBlock:FC<SummaryBlockProps> = ({filmName, year, genres, movieLength
                             size='4' 
                             color="#b0afb1"
                         />
-                        {LanguageHook (genre.nameRu, genre.nameEn, i18n.language)} 
+                        {LanguageHook (genre.nameRu, genre.nameEn, i18n.language)}     
                     </span>)}
             </p>
 

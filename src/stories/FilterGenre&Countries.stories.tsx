@@ -18,10 +18,6 @@ const meta: Meta<typeof FilterTwoBlocks> = {
 
         selectValues: {
             description: 'Выбранные значения конкретного фильтра',
-            options: ['Не выходи', 'Из комнаты', 'Не совершай', 'Ошибку', 'Зачем', 'тебе', 'Солнце', 'если ты', 'куришь ', 'Шипку?', 'За дверью', 'бессмысленно', 'всё, особенно', 'возглас', 'счастья', 'Только ', 'в уборную', 'и сразу же', 'возвращайся', 'О, не выходи', 'из комнаты', 'не вызывай', 'мотора'],
-            control: {
-                type: 'check'
-            }
         },
 
         handleChangeFilter: {
@@ -35,20 +31,37 @@ type Story = StoryObj<typeof FilterTwoBlocks>;
 
 export const FilterBlocks: Story = {
     render: (args) => (
-        <div {...args} style={{'backgroundColor': '#FFFFFF', 'minHeight': 393}} >
-            <FilterTwoBlocks popularValues={args.popularValues} allValues={args.allValues} selectValues={args.selectValues} handleChangeFilter={args.handleChangeFilter}/>
+        <div {...args} style={{'backgroundColor': '#FFFFFF', 'minHeight': 393}}>
+            <FilterTwoBlocks popularValues={args.popularValues} allValues={args.allValues}
+                             selectValues={args.selectValues} handleChangeFilter={args.handleChangeFilter}/>
         </div>
     ),
     args: {
-        popularValues: [{
-            nameRu: '',
-            nameEn:''
-        }],
-        allValues: [{
-            nameRu: '',
-            nameEn:''
-        }],
-        selectValues: ['Не выходи', 'Ошибку'],
-        handleChangeFilter: function (){}
+        popularValues: [
+            {
+                nameRu: 'Жанр',
+                nameEn: 'Genre'
+            },
+            {
+                nameRu: 'Жанр2',
+                nameEn: 'Genre2'
+            },],
+        allValues: [
+            {
+                nameRu: 'Жанр',
+                nameEn: 'Genre'
+            },
+            {
+                nameRu: 'Жанр2',
+                nameEn: 'Genre2'
+            },
+            {
+                nameRu: 'Жанр3',
+                nameEn: 'Genre3'
+            },
+        ],
+        selectValues: ['Жанр3', 'Жанр2'],
+        handleChangeFilter: function () {
+        }
     }
 };

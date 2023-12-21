@@ -29,9 +29,9 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
     }
 
     return (
-        <div className="filterButton">
+        <div className="filterButton" >
             <div className="filterButton__container">
-                <div className={isActive ? "filterButton__content content-active" : "filterButton__content"}
+                <div data-testid='filters-block' className={isActive ? "filterButton__content content-active" : "filterButton__content"}
                      onClick={() => {isActive ? setActiveBlock([]) : setActiveBlock([blockName])}}
                 >
                     <div className="filterButton__header">
@@ -47,7 +47,8 @@ const FilterButton: FC<PropsWithChildren<FilterButtonProps>> = (
                         <Icons name='chevron-down' size='16'/>
                     </div>
                 </div>
-                <div className="filterButton__menu">
+                <div data-testid='filter-result'
+                     className="filterButton__menu">
                     {isActive && children}
                 </div>
             </div>

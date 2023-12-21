@@ -1,29 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
-import './InternalPage.scss'
-import Icons from "../../../../Icons/Icons";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { FilmPageProps } from "../../../../../types/filmPageTypes";
+import { useDispatch } from "react-redux";
+import './InternalPage.scss';
+import { InternalPageProps } from "../../../../../types/filmPageTypes";
+
+import Icons from "../../../../Icons/Icons";
+import ShortInfoBlock from "./ShortInfoBlock/ShortInfoBlock";
+import IpNavPanel from "./IpNavPanel/IpNavPanel";
+import AllCreatorsBlock from "./InnerBlocks/AllCreatorsBlock/AllCreatorsBlock";
+import CommentsCreatingBlock from "./InnerBlocks/CommentsCreatingBlock/CommentsCreatingBlock";
+import FactsBlock from "./InnerBlocks/FactsBlock/FactsBlock";
+import TreilersBlock from "./InnerBlocks/TreilersBlock/TreilersBlock";
+
 import LanguageHook from "../../../../../hooks/LanguageHook";
 import typeChecker from "../../FilmPageUtils";
 import { useTypedSelector } from "../../../../../hooks/useTypedSelector";
-import { useDispatch } from "react-redux";
 import { internalPageFalse } from "../../../../../store/reducers/internalPageReducer";
-import ShortInfoBlock from "./ShortInfoBlock/ShortInfoBlock";
-import AllCreatorsBlock from "./InnerBlocks/AllCreatorsBlock/AllCreatorsBlock";
-import FactsBlock from "./InnerBlocks/FactsBlock/FactsBlock";
-import { allCreatorsBlockFalse, allCreatorsBlockTrue } from "../../../../../store/reducers/allCreatorsBlockReducer";
-import { AnyAction } from "redux";
-import { factsBlockFalse, factsBlockTrue } from "../../../../../store/reducers/factsBlockReducer";
-import TreilersBlock from "./InnerBlocks/TreilersBlock/TreilersBlock";
-import CommentsCreatingBlock from "./InnerBlocks/CommentsCreatingBlock/CommentsCreatingBlock";
-import { commentsCreatingBlockFalse, commentsCreatingBlockTrue } from "../../../../../store/reducers/commentsCreatingBlockReducer";
-import { treilersBlockFalse, treilersBlockTrue } from "../../../../../store/reducers/treilersBlockReducer";
-import IpNavPanel from "./IpNavPanel/IpNavPanel";
-
-interface InternalPageProps {
-    film: FilmPageProps
-}
 
 const InternalPage:FC<InternalPageProps> = ({film}) => {
     const {t, i18n} = useTranslation();
@@ -63,27 +55,33 @@ const InternalPage:FC<InternalPageProps> = ({film}) => {
     function closeInternalPage () {
         dispatch(internalPageFalse());
     };
+//Подсчет количества комментариев
 
+const [commentCounter, setCommentCounter] = useState(film.comments.length);
+
+function onCommentsCountChange (currentCommentsCount:number) {
+    setCommentCounter(currentCommentsCount)
+}
 
     return (
         <div  className="internalPage internalPage__hidden" id='internal-page'>
 
             <div className="internalPage__previous" onClick={closeInternalPage}>
                     <Icons className='internalPage__svg_big' name='back' size='50'/>
-                    <p className="internalPage__text internalPage__text_btn">К фильму</p>
+                    <p className="internalPage__text internalPage__text_btn">{t('internalPage.toFilm')}</p>
             </div>
 
-            <div className="container internalPage__main">
+            <div className="internalPage__main">
 
                 <div className="internalPage__body">
-                    <h2 className="internalPage__heading">{filmName} ({filmType} {film.year})</h2>
-                    <IpNavPanel />
+                    <h3 className="internalPage__heading">{filmName} ({filmType} {film.year})</h3>
+                    <IpNavPanel commentsCounter={commentCounter} trailer={film.trailerUrl}/>
 
 
                     {(allCreatorsBlockStatus) && <AllCreatorsBlock persons={film.persons}/>}
                     {(factsBlockStatus) && <FactsBlock fact={film.fact}/>}
-                    {(treilersBlockStatus) && <TreilersBlock /> }
-                    {(commentsCreatingBlockStatus) && <CommentsCreatingBlock />}
+                    {(treilersBlockStatus) && <TreilersBlock trailer={film.trailerUrl}/> }
+                    {(commentsCreatingBlockStatus) && <CommentsCreatingBlock filmId={film.id} onCommentsCountChange={onCommentsCountChange}/>}
                     
                 </div>
 

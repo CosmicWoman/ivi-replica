@@ -25,11 +25,7 @@
         cursor: pointer;
     }
     &__text {
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-
-        color: $textColor;
+        @extend %standartText;
     }
     &__headerMenu {
         margin-left: 32px;
@@ -149,11 +145,7 @@
         padding-bottom: 14px;
         height: 100%;
 
-        font-size: 15px;
-        line-height: 20px;
-        font-weight: 500;
-        color: $textColor;
-
+        @extend %standartText;
         @include hover-colorAnim ($activeColor, $textColor)
     }
 }

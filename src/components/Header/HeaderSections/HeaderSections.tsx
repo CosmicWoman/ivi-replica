@@ -7,22 +7,24 @@ import './HeaderSections.scss';
 import Button from "../../UI/Buttons/Button/Button";
 import Icons from "../../Icons/Icons";
 import OpenUrl from "../../../hooks/OpenUrl";
+import { useTypedSelector } from "../../../hooks/useTypedSelector";
 
 const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, toggleSearchSection}) => {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const login = useTypedSelector(state => state.auth.isAuth);
 
     return (
         <div className="headerSections">
 
             <div className="headerSections__block">
 
-                <div className="headerSections__img">
-                    <img 
+                <div className="headerSections__img" >
+                    <img data-testid='mainPageLink'
                         className="headerSections__logo_ivi"
                         src='https://solea-parent.dfs.ivi.ru/picture/ea003d,ffffff/reposition_iviLogoPlateRounded.svg' 
                         alt="Логотип Иви" 
-                        onClick={() => navigate (`/movies-website/main/`)}/>
+                        onClick={() => navigate (`/movies-website/`)}/>
                 </div>
 
             
@@ -31,7 +33,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                         <ul className="headerMenu__list">
 
                             <li className="headerMenu__listItem">
-                                <a onClick={() => navigate (`/movies-website/main/`)} title="Мой Иви" className="headerMenu__link">
+                                <a onClick={() => navigate (`/movies-website/`)} title="Мой Иви" className="headerMenu__link">
                                     <p className="headerMenu__text">{t('header.myIvi')}</p>
                                 </a>
                             </li>
@@ -47,6 +49,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                                     title="Фильмы" 
                                     className="headerMenu__link"
                                     onClick={() => navigate (`/movies-website/films/`)}
+                                    data-testid='moviesPageLink'
                                 >
                                     <p 
                                         className="headerMenu__text"
@@ -56,12 +59,13 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                                 </a>
                             </li>
 
-                            <li className="headerMenu__listItem">
+                            <li className="headerMenu__listItem"  >
                                 <a href="https://www.ivi.ru/series" title="Сериалы" className="headerMenu__link">
                                     <p 
                                         className="headerMenu__text"
                                         onMouseOver={hoverListener}
                                         onMouseLeave={leaveListener}
+                                        data-testid='headerSeriesSection'
                                     >{t('header.series')}</p>
                                 </a>
                             </li>
@@ -70,7 +74,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                                 <a 
                                     title="Мультфильмы" 
                                     className="headerMenu__link"
-                                    onClick={() => navigate (`/movies-website/films/genre/cartoon`)}
+                                    onClick={() => navigate (`/movies-website/films/genre/мультфильм`)}
                                 >
                                     <p 
                                         className="headerMenu__text"
@@ -114,6 +118,7 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                 <div 
                     className="headerSections__btn-block headerSections__btn-block_search"
                     onClick={toggleSearchSection}
+                    data-testid='headerSerch'
                 >
                     <Icons className="headerSections__svg headerSections__svg_search" name='search' color='gray' size='20' strokeWidth="2"/>
                     <p className="headerSections__text">{t('header.search')}</p>
@@ -132,10 +137,21 @@ const HeaderSections:FC<HeaderSectionsProps> = ({hoverListener, leaveListener, t
                     className="headerSections__btn-block headerSections__btn-block_login"
                     onMouseOver={hoverListener}
                     onMouseLeave={leaveListener}
-                    onClick={() => OpenUrl('https://www.ivi.ru/profile')}
+                    onClick={() => navigate (`/movies-website/auth/`)}
                 >
                     <div className="headerSections__svg-border">
-                        <Icons className="headerSections__svg headerSections__svg_login" name='person' color='#fff' size='20' strokeWidth="3"/> 
+                        { (!login) && <Icons className="headerSections__svg headerSections__svg_login" 
+                                            name='person' 
+                                            color='#fff' 
+                                            size='20' 
+                                            strokeWidth="3"/>
+                        }
+                        { (login) && <Icons className="headerSections__svg headerSections__svg_login" 
+                                            name='personFull' 
+                                            color='#fff' 
+                                            size='20' 
+                                            strokeWidth="3"/>
+                        } 
                     </div> 
                 </div>
                 

@@ -16,7 +16,8 @@ const ShortMovieCard: FC<PropsWithChildren<ShortMovieCardProps>> = ({film, route
     let strRating = film.rating.toString().replace('.', ',')
 
     return (
-        <div className="shortMovieCard">
+        <div data-testid='shortMovieCard'
+             className="shortMovieCard">
             <div className="shortMovieCard__container">
                 <div className="shortMovieCard__content">
 

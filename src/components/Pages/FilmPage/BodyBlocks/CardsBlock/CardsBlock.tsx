@@ -9,21 +9,21 @@ import LanguageHook from "../../../../../hooks/LanguageHook";
 import { useDispatch } from "react-redux";
 import { gradeTrue } from "../../../../../store/reducers/gradeReducer";
 
-const CardsBlock:FC<CardsBlockProps> = ({ratingKp, creators}) => {
+const CardsBlock:FC<CardsBlockProps> = ({ratingKp, persons}) => {
     const navigate = useNavigate();
     const {t, i18n} = useTranslation();
 
-    const [actors, setActors] = useState(creators.slice(0,5));
+    const [actors, setActors] = useState(persons.slice(0,5));
 
     useEffect( () => {
-        let filtredList = creators.filter(actor => actor.professions[0].name === 'актеры');
+        let filtredList = persons.filter(actor => actor.professions[0].name === 'актеры');
         if (filtredList.slice(0,5).length < 5) {
-            setActors(creators.slice(0,5));
+            setActors(persons.slice(0,5));
         } else {
             setActors(filtredList.slice(0,5));    
         }
         
-    },[creators]);
+    },[persons]);
 
     //Redux
     const dispatch = useDispatch();

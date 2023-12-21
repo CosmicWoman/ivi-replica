@@ -13,6 +13,31 @@ $activeColor: #fff;
 $redColor: #ea003d;
 $activeRedColor: #ff1a57;
 
+%standartText {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 22px;
+    color: $textColor;
+};
+
+%modalWindowPreset {
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    min-height: 500%;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+
+    overflow: hidden;
+    background:rgba(0,0,0,.9);
+};
+
 @mixin hover-colorAnim ($hoverColor, $defaultColor){
     transition-property: color;
     &:hover {
@@ -24,7 +49,7 @@ $activeRedColor: #ff1a57;
         color: $defaultColor;
         transition-duration: 0.4s;
     }
-}
+};
 
 @mixin hover-backgroundcolorAnim ($hoverColor, $defaultColor){
     transition-property: background-color;
@@ -37,4 +62,4 @@ $activeRedColor: #ff1a57;
         background-color: $defaultColor;
         transition-duration: 0.4s;
     }
-}
+};

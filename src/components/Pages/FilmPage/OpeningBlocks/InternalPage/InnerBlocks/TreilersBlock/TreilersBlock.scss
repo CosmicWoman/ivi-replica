@@ -4,11 +4,22 @@
 
     &__heading {
         margin: 40px 0;
-        font-size: 30px;
-        color: white;
+        font-size: 28px;
+        font-weight: 600;
+        color: $headingColor;
     }
     &__text {
-        color: White;
+        @extend %standartText;
         margin-bottom: 3000px;
     } 
+    &__video {
+        max-width: 280px;
+        max-height: 160px;
+        border-radius: 10px;
+        margin-bottom: 3000px;
+    }
+    &__videoPlayer {
+        max-width: 280px;
+        max-height: 160px;
+    }
 }

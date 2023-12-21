@@ -90,6 +90,9 @@
             &__title{
                 margin-right: 8px;
             }
+            &__arrow_reverse{
+                transform: rotate(180deg);
+            }
         }
     }
 }
