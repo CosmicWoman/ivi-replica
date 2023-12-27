@@ -16,6 +16,7 @@
     "@types/react-redux": "^7.1.25",
     "axios": "^1.4.0",
     "concurrently": "^8.2.2",
+    "dotenv": "^16.3.1",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
@@ -38,15 +39,16 @@
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run dev\"",
-    "server": "json-server -w db.json -p 5000",
+    "server": "json-server -w src/server/db/db.json --routes src/server/routes.json -p 5000",
     "dev": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run save-json-api && shx cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "concurrently \"npm run build\" \"npm run server\"",
+    "predeploy": "shx rm -rf build && npm run build",
     "deploy": "gh-pages -d build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "save-json-api": "node src/server/scripts/save-json-api.js"
   },
   "eslintConfig": {
     "extends": [
@@ -87,7 +89,9 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "babel-plugin-named-exports-order": "^0.0.2",
     "gh-pages": "^5.0.0",
+    "node-fs": "^0.1.7",
     "prop-types": "^15.8.1",
+    "shx": "^0.3.4",
     "storybook": "^7.0.5",
     "webpack": "^5.79.0"
   },

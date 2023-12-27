@@ -24,6 +24,7 @@ import GradeBlock from '../../GradeBlock/GradeBlock';
 import AxiosErrorCheck from "../../../hooks/AxiosErrorCheck";
 import {FilmPageProps} from "../../../types/filmPageTypes";
 import {Film} from "../FilmPage/FilmPage";
+import api from '../../../api'
 
 const MoviesPage = () => {
         const {t, i18n} = useTranslation();
@@ -127,10 +128,10 @@ const MoviesPage = () => {
             if (selectedFilters.actor) {
                 persons_.push(selectedFilters.actor)
             }
-
-            const response = await axios.get('http://localhost:5000/films')
+            // axios.get('http://localhost:5000/films')
+            const response = await api.get.data()
             //@ts-ignore
-            movies_ = response.data.map(item => {
+            movies_ = response.films.map(item => {
                 return {
                     key: item.id,
                     nameRu: item.filmNameRu,
@@ -189,16 +190,19 @@ const MoviesPage = () => {
 
         async function fetchFilters() {
             let filters
+            // const response = await axios.get('http://localhost:5000/filters')
 
-            const response = await axios.get('http://localhost:5000/filters')
+            const fetchData = await api.get.data()
+            const response = fetchData.filters
+            console.log(response)
             filters = {
                 ...allFilters,
-                genres: response.data.genres,
+                genres: response.genres,
                 // @ts-ignore
-                countries: response.data.countries.map((item) => {
+                countries: response.countries.map((item) => {
                     return {nameRu: item.countryName, nameEn: item.countryNameEn}
                 }),
-                years: response.data.years.reverse()
+                years: response.years.reverse()
             }
 
             setAllFilters(filters)
