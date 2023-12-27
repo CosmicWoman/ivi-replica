@@ -1,0 +1,122 @@
+@import '/src/styles/variables.scss';
+
+.review {
+
+    padding: 20px;
+    margin-bottom: 20px;
+    min-width: 300px;
+    min-height: 180px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    background-color: $backgroundElements;
+    border-radius: 5px;
+
+    &__text {
+        margin-bottom: 4px;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+        font-style: normal;
+        color: $textColor;
+        text-align: center;
+    } 
+    &__left {
+        margin-right: 30px;
+        flex: 1 1 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__right{
+        flex: 1 1 85%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__top {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__header {
+        margin-bottom: 10px;
+        min-height: 16px; 
+
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 700;
+        font-style: normal;
+        color: $textColor;
+
+        overflow: hidden;
+        //white-space: nowrap;
+        text-overflow: ellipsis; 
+    }
+    &__body{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 400;
+        color: $textColor;
+    }
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    &__parentID{
+        width: 0;
+        height: 0;
+        color: transparent;
+        background-color: transparent;
+    }
+    &__like {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__likeCounter {
+        padding: 0 8px;
+        
+        font-size: 15px;
+        line-height: 20px;
+        font-weight: 700;
+        font-style: normal;
+        color: #73a32f;
+    }
+    &__svg {
+        cursor: pointer;
+        &:hover {
+            fill: white;
+            stroke: white;
+        }
+    }
+    &__btn {
+        &_big{
+            display: block;
+        }
+        &_small {
+            cursor: pointer;
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .review {
+        padding: 14px;
+        min-width: 280px;
+        &__btn {
+            &_big{
+                display: none;
+            }
+            &_small {
+                display: block;
+            }
+        }
+    }
+}

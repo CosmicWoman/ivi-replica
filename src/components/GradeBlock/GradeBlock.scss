@@ -1,0 +1,176 @@
+@import '/src/styles/variables.scss';
+
+.gradeBlock {
+    @extend %modalWindowPreset; 
+    width:100vw;
+    height:100vh;
+    
+    &__hidden {
+        display: none;
+    }
+    &__close {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        cursor: pointer;
+    }
+    &__modal {
+        margin-top: 30vh;
+        width: 50vw;
+        &_hidden {
+            display: none;
+        }
+    }
+    &__heading {
+        font-size: 40px;
+        line-height: 44px;
+        font-weight: 900;
+        font-style: normal;
+        color: $headingColor;
+    }
+    &__text {
+        margin-top: 12px;
+        @extend %standartText; 
+    }
+    &__optionSelector{
+        margin-top: 24px;
+    }
+    &__box{
+        background-color: #1f1b2e;
+        height: 60px;
+        padding: 4px;
+        column-gap: 2px;
+        border-radius: 16px;
+        display: flex;
+    }
+    &__optionWrapper{
+        height: 52px;
+        width: 100%;
+        position: relative;
+    }
+    &__option {
+        background-color: transparent;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        border-radius: 12px;
+        &:hover {
+            background-color: $redColor;
+            cursor: pointer;
+            .gradeBlock__option-caption{
+               color: $activeColor; 
+            }
+        }
+        &:active {
+            background-color: $redColor;
+            cursor: pointer;
+            .gradeBlock__option-caption{
+               color: $activeColor; 
+            }
+        }
+    }
+    &__option-caption{
+        color: #7e798f;
+
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 500;
+        font-style: normal;
+        margin-top: 14px;
+        text-align: center;
+    }
+    &__labelBlock{
+        height: 16px;
+        margin-top: 12px;
+
+        display: flex;
+        justify-content: space-between;
+    }
+    &__label{
+        color: #7e798f;
+        
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 400;
+        font-style: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 16px;
+        &_left {
+           padding-left: 8px; 
+        }
+        &_right {
+          padding-right: 8px;  
+        }
+    }
+    &__svg {
+        &_complete {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media (max-width: 880px) {
+    .gradeBlock {
+        &__modal {
+            width: 70vw;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .gradeBlock {
+        &__heading {
+            text-align: center;
+        }
+        &__text {
+            text-align: center;
+        }
+        &__modal {
+            margin-top: 35vh;
+            width: 85vw;
+        }
+        &__option-caption{
+            font-size: 18px;
+            line-height: 24px;
+        }
+        &__complete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+@media (max-width: 440px) {
+    .gradeBlock {
+        &__modal {
+            margin-top: 30vh;
+            width: 90vw;
+        }
+        &__heading {
+            font-size: 32px;
+        }
+        &__text {
+            margin-top: 6px;
+            font-size: 13px;
+        }
+        &__box{
+            background-color: $backgroundElements;
+            height: 40px;
+        }
+        &__optionWrapper{
+            height: 40px;
+            transform: translateY(-4px);
+        }
+        &__option-caption{
+            font-size: 12px;
+            line-height: 10px;
+        }
+    }
+}

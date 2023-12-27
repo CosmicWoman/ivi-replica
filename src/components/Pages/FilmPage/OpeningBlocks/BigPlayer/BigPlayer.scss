@@ -1,0 +1,42 @@
+@import '/src/styles/variables.scss';
+
+.bigPlayer {
+    @extend %modalWindowPreset; 
+    
+    min-height: auto;
+    width:100vw;
+    height:100vh;
+    flex-direction: column;
+    align-items: center;
+
+    &__hidden {
+        display: none;
+    }
+    &__close {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        cursor: pointer;
+    }
+    &__video {
+        position: relative;
+        width: 70%;
+        //height: auto;
+        //margin: 20px auto;
+        //background: #eee;
+
+        &::after {
+            content: '';
+            display: block;
+            padding-top: 50%; /*установите ваши пропорции, в данном случае квадрат*/
+          }
+    }
+    &__videoPlayer{
+        position: absolute;
+        //background: #555;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}

@@ -1,0 +1,120 @@
+@import '/src/styles/variables.scss';
+
+.sharePanel {
+    @extend %modalWindowPreset;
+    width:100vw;
+    height:100vh;
+    min-height: auto;
+
+    flex-direction: column;
+    align-items: center;
+
+    &__hidden {
+        display: none;
+    }
+    &__panel {
+        padding: 16px 0;
+        min-width: 400px;
+        min-height: 499px;
+
+        background-color: $backgroundColor;
+        border-radius: 20px;
+    }
+    &__head{
+        padding: 10px 24px 16px;
+        display: flex;
+        position: relative;
+        border-bottom: 1px solid $splitLineColor;
+    }
+    &__left{
+        max-height: 66px;
+        margin-right: 14px;
+        
+    }
+    &__img {
+        border-radius: 4px;
+        max-height: 66px;
+    }
+    &__right {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    &__heding{
+        font-size: 17px;
+        line-height: 22px;
+        font-weight: 700;
+        font-style: normal;
+        color: $headingColor;
+    }
+    &__bottom{
+        display: flex;
+        align-items: center;
+    }
+    &__text{
+        margin-top: 4px;
+        @extend %standartText;
+    }
+    &__close {
+        padding: 3px 5px 3px 4px;
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        border-radius: 50%;
+        background-color: $defaultIconColor;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+    }
+    &__body{
+        padding: 16px 24px 10px;
+    }
+    &__part{
+        &_center {
+            margin: 12px 0;
+        }
+    }
+    &__btn{
+        padding: 14px 16px;
+        display: flex;
+        justify-content: space-between;
+        &_solo {
+            border-radius: 8px;
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+        &_top {
+            border-radius: 8px 8px 0 0;
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+        &_center {
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+        &_bottom {
+            border-radius: 0 0 8px 8px;
+            @include hover-backgroundcolorAnim ($defaultIconColor-hover, $defaultIconColor)
+        }
+    }
+    &__btnTitle{
+        @extend %standartText;
+    }
+    &__svg{
+        &_circle-flooded{
+            transform: translateY(3px);
+            margin: 6px;
+        }
+        
+    }
+}
+
+@media (max-width: 600px) {
+    .sharePanel {
+        &__panel {
+            padding: 16px 0;
+            min-width: 100px;;
+            width: 300px;
+            min-height: 499px;
+        }
+    }
+}
