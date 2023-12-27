@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ivi-replica/static/css/main.ba2bac56.css",
-    "main.js": "/ivi-replica/static/js/main.f1786ee6.js",
+    "main.js": "/ivi-replica/static/js/main.e858b2a0.js",
     "static/media/tv-without-poster.png": "/ivi-replica/static/media/tv-without-poster.6eaa0bdcae45928aa0e8.png",
     "static/media/film2.png": "/ivi-replica/static/media/film2.5db82486d317b0fe58f2.png",
     "static/media/IvyStyleSans-LightItalic.eot": "/ivi-replica/static/media/IvyStyleSans-LightItalic.fed5019bdac3f3fb6af9.eot",
@@ -85,10 +85,10 @@
     "index.html": "/ivi-replica/index.html",
     "static/media/getFetch.cjs": "/ivi-replica/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.ba2bac56.css.map": "/ivi-replica/static/css/main.ba2bac56.css.map",
-    "main.f1786ee6.js.map": "/ivi-replica/static/js/main.f1786ee6.js.map"
+    "main.e858b2a0.js.map": "/ivi-replica/static/js/main.e858b2a0.js.map"
   },
   "entrypoints": [
     "static/css/main.ba2bac56.css",
-    "static/js/main.f1786ee6.js"
+    "static/js/main.e858b2a0.js"
   ]
 }
