@@ -20,7 +20,7 @@ const getJson = async <T>(endpoint: ENDPOINTS): Promise<T> => {
     const path =
         process.env.REACT_APP_NODE_ENV === 'development'
             ? `http://localhost:5000/api/${endpoint}`
-            : `https://raw.githubusercontent.com/CosmicWoman/gh-pages-demo/gh-pages/static/db/${endpoint}.json`;
+            : `https://raw.githubusercontent.com/CosmicWoman/ivi-replica/gh-pages/static/db/${endpoint}.json`;
 
     const response = await fetch(path);
 
@@ -36,7 +36,7 @@ const api: API = {
     get: {
         // @ts-ignore
         //TODO: Проверить и исправить ошибку, по возможности.
-        data: () => getJson<RESPONSE_DATA>('db'),
+        data: () => getJson<RESPONSE_DATA>('data'),
     },
 };
 
