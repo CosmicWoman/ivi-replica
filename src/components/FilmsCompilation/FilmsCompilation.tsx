@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import AxiosErrorCheck from "../../hooks/AxiosErrorCheck";
+import api from "../../api";
 
 interface IFilmsCompilationProps {
 	variant: string
@@ -32,20 +33,19 @@ export const FilmsCompilation: FC<IFilmsCompilationProps> = ({ genre, title, var
 	}, [])
 
 	async function fetchData() {
-		let response;
-		if (errorAxios){
-			response = await axios.get(`http://localhost:5000/${genre}`)
-		} else {
-			response = await axios.get('http://localhost:5000/films', {
-				params: {
-					perPage: 19,
-					page: 1,
-					genres: genre
-				}
-			})
-		}
-
-		const movies = response.data.map((item: any) => {
+		// if (errorAxios){
+		// 	response = await axios.get(`http://localhost:5000/${genre}`)
+		// } else {
+		// 	response = await axios.get('http://localhost:5000/films', {
+		// 		params: {
+		// 			perPage: 19,
+		// 			page: 1,
+		// 			genres: genre
+		// 		}
+		// 	})
+		// }
+		const response = await api.get.data()
+		const movies = response.actionFilms.map((item: any) => {
 			return {
 				key: item.id,
 				nameRu: item.filmNameRu,

@@ -10,7 +10,7 @@ const NotFoundPage = () => {
     useEffect( () => {
         setTimeout(() => {
             navigate (`/movies-website/`);
-        },3000)
+        },0)
     },[]);
 
     return (
